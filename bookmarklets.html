@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Bookmarklets</h1>
+<li>
+    redirectFromSendappTo<a href='
+javascript:(function () {
+    url = window.location.href.split("/").slice(0, 4).join("/")+ "/calculation/";
+    trid_el = document.getElementsByClassName("transaction-id");
+    if (trid_el.length == 1) {
+    window.location.href = url + trid_el[0].getAttribute("value");
+    } else {
+    alert("Cannot find element, are you in sendapp?");
+    }
+    })();'>toPlutus</a>
+</li>
+
+</body>
+</html>
+
+
