@@ -4,8 +4,7 @@
 
 <h1>Bookmarklets</h1>
 <p>Handy bookmarks with embedded scripts. Just drag any link to the bookmark bar in your browser</p>
-<li>
-    redirectFromSendappTo<a href='
+<li>redirectFromSendappTo<a href='
 javascript:(function () {
     url = window.location.href.split("/").slice(0, 4).join("/")+ "/calculation/";
     trid_el = document.getElementsByClassName("transaction-id");
@@ -14,7 +13,8 @@ javascript:(function () {
     } else {
     alert("Cannot find element, are you in sendapp?");
     }
-    })();'>toPlutus</a> - redirects from sendapp calculation page into plutus transaction (with proper ID)
+    })();'>toPlutus</a>
+    - redirects from sendapp calculation page into plutus transaction (with proper ID)<div>Usage: go to country calculation page, configure the transaction, but instead of clicking "Send", just click this bookmarklet</div>
 </li>
 
 </body>
