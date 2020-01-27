@@ -4,18 +4,62 @@
 
 <h1>Bookmarklets</h1>
 <p>Handy bookmarks with embedded scripts. Just drag any link to the bookmark bar in your browser</p>
+
 <li>redirectFromSendappTo<a href='
-javascript:(function () {
+javascript:(
+function () {
     url = window.location.href.split("/").slice(0, 4).join("/")+ "/calculation/";
     trid_el = document.getElementsByClassName("transaction-id");
     if (trid_el.length == 1) {
-    window.location.href = url + trid_el[0].getAttribute("value");
+        new_url = url + trid_el[0].getAttribute("value");
+        window.location.href = new_url;
+        console.log("REDIRECTED TO PLUTUS: " + new_url);
     } else {
-    alert("Cannot find element, are you in sendapp?");
+        alert("Cannot find element, are you in sendapp?");
     }
     })();'>toPlutus</a>
     - redirects from sendapp calculation page into plutus transaction (with proper ID)<div>Usage: go to country calculation page, configure the transaction, but instead of clicking "Send", just click this bookmarklet</div>
 </li>
+
+<li>navigate<a href='
+javascript:(
+function () {
+    hostname = "http://localhost:8000";
+    cur_link = new URL(window.location.href);
+    new_url = hostname + cur_link.pathname;
+    window.location.href = new_url;
+    })();
+
+    '>toLocal:8000</a>
+    - replaces current URL's hostname to localhost:8000</div>
+</li>
+
+<li>navigate<a href='
+javascript:(
+function () {
+    hostname = "https://staging.worldremit.com";
+    cur_link = new URL(window.location.href);
+    new_url = hostname + cur_link.pathname;
+    window.location.href = new_url;
+    })();
+
+    '>toStaging</a>
+    - replaces current URL's hostname to staging.worldremit.com</div>
+</li>
+
+<li>navigate<a href='
+javascript:(
+function () {
+    hostname = "https://worldremit.com";
+    cur_link = new URL(window.location.href);
+    new_url = hostname + cur_link.pathname;
+    window.location.href = new_url;
+    })();
+
+    '>toProd</a>
+    - replaces current URL's hostname to worldremit.com</div>
+</li>
+
 
 </body>
 </html>
