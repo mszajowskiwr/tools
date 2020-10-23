@@ -13,22 +13,6 @@ function () {
     - fixes the scroll issue in Jenkins Blue Ocean: when viewing stages in Blue Ocean it scrolls to the bottom of the stage by itself - this bookmarklet will fix that (side effects unknown - like page might not be getting fresh logs!)</div>
 </li>
 
-<li>redirectFromSendappTo<a href='
-javascript:(
-function () {
-    url = window.location.href.split("/").slice(0, 4).join("/")+ "/calculation/";
-    trid_el = document.getElementsByClassName("transaction-id");
-    if (trid_el.length == 1) {
-        new_url = url + trid_el[0].getAttribute("value");
-        window.location.href = new_url;
-        console.log("REDIRECTED TO PLUTUS: " + new_url);
-    } else {
-        alert("Cannot find element, are you in sendapp?");
-    }
-    })();'>toPlutus</a>
-    - redirects from sendapp calculation page into plutus transaction (with proper ID)<div>Usage: go to country calculation page, configure the transaction, but instead of clicking "Send", just click this bookmarklet</div>
-</li>
-
 <li>navigate<a href='
 javascript:(
 function () {
@@ -68,6 +52,22 @@ function () {
     - replaces current URL's hostname to worldremit.com</div>
 </li>
 
+
+<li>NO LONGER NEEDED: redirectFromSendappTo<a href='
+javascript:(
+function () {
+    url = window.location.href.split("/").slice(0, 4).join("/")+ "/calculation/";
+    trid_el = document.getElementsByClassName("transaction-id");
+    if (trid_el.length == 1) {
+        new_url = url + trid_el[0].getAttribute("value");
+        window.location.href = new_url;
+        console.log("REDIRECTED TO PLUTUS: " + new_url);
+    } else {
+        alert("Cannot find element, are you in sendapp?");
+    }
+    })();'>toPlutus</a>
+    - redirects from sendapp calculation page into plutus transaction (with proper ID)<div>Usage: go to country calculation page, configure the transaction, but instead of clicking "Send", just click this bookmarklet</div>
+</li>
 
 </body>
 </html>
