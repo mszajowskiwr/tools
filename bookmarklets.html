@@ -13,6 +13,79 @@ function () {
     - fixes the scroll issue in Jenkins Blue Ocean: when viewing stages in Blue Ocean it scrolls to the bottom of the stage by itself - this bookmarklet will fix that (side effects unknown - like page might not be getting fresh logs!)</div>
 </li>
 
+<li><a href='
+javascript:(function () {
+  var e, s;
+  IB = -1;
+
+  function isDigit(c) {
+    return ("0" <= c && c <= "9")
+  }
+
+  L = location.href;
+  LL = L.length;
+  for (e = LL - 1; e >= 0; --e) {
+    if (isDigit(L.charAt(e))) {
+      for (s = e - 1; s >= 0; --s) {
+        if (!isDigit(L.charAt(s))) {
+          break;
+        }
+      }
+      break;
+    }
+  }
+  ++s;
+  if (e < 0) {
+    return;
+  }
+  oldNum = L.substring(s, e + 1);
+  newNum = "" + (parseInt(oldNum, 10) + IB);
+  while (newNum.length < oldNum.length) {
+    newNum = "0" + newNum;
+  }
+  location.href = L.substring(0, s) + newNum + L.slice(e + 1);
+})();
+'>-1</a>
+    - decrements last number in URL by one - pretty useful when looking for some jenkins build</div>
+</li>
+
+<li><a href='
+javascript:(function () {
+  var e, s;
+  IB = 1;
+
+  function isDigit(c) {
+    return ("0" <= c && c <= "9")
+  }
+
+  L = location.href;
+  LL = L.length;
+  for (e = LL - 1; e >= 0; --e) {
+    if (isDigit(L.charAt(e))) {
+      for (s = e - 1; s >= 0; --s) {
+        if (!isDigit(L.charAt(s))) {
+          break;
+        }
+      }
+      break;
+    }
+  }
+  ++s;
+  if (e < 0) {
+    return;
+  }
+  oldNum = L.substring(s, e + 1);
+  newNum = "" + (parseInt(oldNum, 10) + IB);
+  while (newNum.length < oldNum.length) {
+    newNum = "0" + newNum;
+  }
+  location.href = L.substring(0, s) + newNum + L.slice(e + 1);
+})();
+'>+1</a>
+    - increments last number in URL by one - pretty useful when looking for some jenkins build</div>
+</li>
+
+
 <li>navigate<a href='
 javascript:(
 function () {
