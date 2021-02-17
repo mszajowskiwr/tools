@@ -25,7 +25,7 @@ echo "--------------"
 
 for provider in ${ALL_PROVIDERS}; do
     echo "${CONSUMER} has pact with ${provider} on paths:"
-    # TODO: what if some pact existed before, but in the current 'latest' it's not there?
+    # TODO: what if some pact existed before, but in the current 'latest' is not there?
     PACT_URL="https://pact-broker.wremitdev.com/pacts/provider/${provider}/consumer/${CONSUMER}/latest"
     curl "${PACT_URL}"  2>/dev/null | jq ".interactions[].request.path"
 done
