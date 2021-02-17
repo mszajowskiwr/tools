@@ -21,7 +21,7 @@ ALL_PROVIDERS=$(echo "${ALL_VERSIONS}" | jq .'_embedded.versions[]._links."pb:pa
 
 echo "${CONSUMER} has pacts with following backend services:" ${ALL_PROVIDERS}
 
-echo -- "--------------"
+echo "--------------"
 
 for provider in ${ALL_PROVIDERS}; do
     echo "${CONSUMER} has pact with ${provider} on paths:"
