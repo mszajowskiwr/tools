@@ -24,8 +24,9 @@ echo "${CONSUMER} has pacts with following backend services:" ${ALL_PROVIDERS}
 echo "--------------"
 
 for provider in ${ALL_PROVIDERS}; do
-    echo "${CONSUMER} has pact with ${provider} on paths:"
+    echo "${CONSUMER} has pact with '${provider}' on paths:"
     # TODO: what if some pact existed before, but in the current 'latest' is not there?
     PACT_URL="https://pact-broker.wremitdev.com/pacts/provider/${provider}/consumer/${CONSUMER}/latest"
-    curl "${PACT_URL}"  2>/dev/null | jq ".interactions[].request.path"
+    curl "${PACT_URL}"  2>/dev/null | jq ".interactions[].request.path" | sed 's/"//g' # sed "s/^/${provider}:/"
+    echo ""
 done
