@@ -1,0 +1,10 @@
+<resources>
+    <string name="select_an_agent">Select an Agent</string>
+    <string name="action_about_follow_on_twitter">Follow @WorldRemit on Twitter</string>
+    <string name="action_about_like_on_facebook">Like WorldRemit on Facebook</string>
+    <string name="action_about_rate_app">Rate the app</string>
+    <string name="action_add_from_saved_recipients">Add from saved recipients</string>
+    <string name="action_agree">I agree</string>
+    <string name="action_back">Back</string>
+    <string name="costam"><data>This is nested data</data></string>
+</resources>

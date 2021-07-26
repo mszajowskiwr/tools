@@ -1,0 +1,12 @@
+{
+  "Activity": "Activity",
+  "SearchPlaceholder": "Search",
+  "TransactionStatus": {
+    "created": "created",
+    "draft": "draft",
+    "blabla": [
+      "entry1",
+      "entry2"
+    ]
+  }
+}
