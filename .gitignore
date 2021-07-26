@@ -1,0 +1,27 @@
+# MacOS
+**/.DS_Store
+
+# IDE
+.idea/*
+*.swp
+
+# Building
+out/
+build/
+.allure/
+allure-results/*
+.gradle/
+
+# Configuration Manager binary for Selenoid
+cm
+
+# Secrets
+src/test/resources/secrets.properties
+src/test/resources/scripts/secrets.properties
+devops/kubernetes/overlays/sandbox/cms/secrets.properties
+
+# Exclude code style
+!.idea/codeStyles
+!.idea/codeStyles/*
+!.idea/inspectionProfiles
+!.idea/inspectionProfiles/*
