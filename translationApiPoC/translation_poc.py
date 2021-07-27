@@ -7,6 +7,7 @@ import json
 from pathlib import Path
 import lxml.etree as ET
 import boto3
+import sys
 
 
 SUPPORTED_LANGS = ['af', 'sq', 'am', 'ar', 'hy', 'az', 'bn', 'bs', 'bg', 'ca', 'zh', 'zh-TW', 'hr', 'cs', 'da', 'fa-AF',
@@ -49,6 +50,8 @@ def check_type(file_name: str) -> str:
 
 
 def translate(value, src_lang, dst_lang):
+    sys.stdout.write('.')
+    sys.stdout.flush()
     result = translate_client.translate_text(Text=value, SourceLanguageCode=src_lang, TargetLanguageCode=dst_lang)
     return result.get('TranslatedText')
 
@@ -79,16 +82,17 @@ def translate_json_file(file_name, src_lang, dst_lang):
     data = Path(file_name).read_text()
     json_data = json.loads(data)
     translate_json(json_data, src_lang, dst_lang)
-    print(json.dumps(json_data, indent=4))
-    print(json.dumps(json_data, indent=4),  file=open(dst_lang + '_' + file_name, 'w'))
+    # print(json.dumps(json_data, indent=4, ensure_ascii=False))
+    print(json.dumps(json_data, indent=4, ensure_ascii=False),
+          file=open(dst_lang + '_' + file_name, 'w', encoding="utf-8"))
 
 
 def translate_xml_file(file_name, src_lang, dst_lang):
     et = ET.parse(file_name)
     translate_xml(et.getroot(), src_lang, dst_lang)
-    result = ET.tostring(et.getroot(), pretty_print=True).decode("utf-8")
-    print(result)
-    print(result, file=open(dst_lang + '_' + file_name, "w"))
+    result = ET.tostring(et.getroot(), encoding="utf-8", pretty_print=True).decode("utf-8")
+    # print(result)
+    print(result, file=open(dst_lang + '_' + file_name, "w", encoding="utf-8"))
 
 
 if __name__ == "__main__":
