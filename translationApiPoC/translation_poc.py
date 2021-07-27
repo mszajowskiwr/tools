@@ -49,7 +49,6 @@ def check_type(file_name: str) -> str:
 
 
 def translate(value, src_lang, dst_lang):
-    # TODO: make this really translate ;)
     result = translate_client.translate_text(Text=value, SourceLanguageCode=src_lang, TargetLanguageCode=dst_lang)
     return result.get('TranslatedText')
 
