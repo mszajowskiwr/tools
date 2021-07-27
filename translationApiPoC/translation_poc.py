@@ -6,6 +6,7 @@ import mimetypes
 import json
 from pathlib import Path
 import lxml.etree as ET
+import boto3
 
 
 SUPPORTED_LANGS = ['af', 'sq', 'am', 'ar', 'hy', 'az', 'bn', 'bs', 'bg', 'ca', 'zh', 'zh-TW', 'hr', 'cs', 'da', 'fa-AF',
@@ -14,8 +15,7 @@ SUPPORTED_LANGS = ['af', 'sq', 'am', 'ar', 'hy', 'az', 'bn', 'bs', 'bg', 'ca', '
                    'ps', 'pl', 'pt', 'ro', 'ru', 'sr', 'si', 'sk', 'sl', 'so', 'es', 'es-MX', 'sw', 'sv', 'tl', 'ta',
                    'te', 'th', 'tr', 'uk', 'ur', 'uz', 'vi', 'cy', 'auto']
 
-# import boto3
-# translate = boto3.client(service_name='translate', region_name='region', use_ssl=True)
+translate_client = boto3.client(service_name='translate', region_name='eu-central-1', use_ssl=True)
 
 
 def parse_args():
@@ -50,10 +50,8 @@ def check_type(file_name: str) -> str:
 
 def translate(value, src_lang, dst_lang):
     # TODO: make this really translate ;)
-    # result = translate.translate_text(Text=value,
-    #                                   SourceLanguageCode=src_lang, TargetLanguageCode=dst_lang)
-    # return result.get('TranslatedText')
-    return "TRANSLATION OF: " + value
+    result = translate_client.translate_text(Text=value, SourceLanguageCode=src_lang, TargetLanguageCode=dst_lang)
+    return result.get('TranslatedText')
 
 
 def translate_json(data, src_lang, dst_lang):
@@ -76,7 +74,6 @@ def translate_xml(data, src_lang, dst_lang):
             if child.text is not None:
                 child.text = translate_xml(child.text, src_lang, dst_lang)
             translate_xml(child, src_lang, dst_lang)
-
 
 
 def translate_json_file(file_name, src_lang, dst_lang):
