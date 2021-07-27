@@ -99,6 +99,8 @@ if __name__ == "__main__":
     args = parse_args()
     validate_args(args)
     for file_name in args.files:
+        sys.stdout.write(file_name + ": ")
+        sys.stdout.flush()
         fileType = check_type(file_name)
         if fileType == "application/json":
             translate_json_file(file_name, args.source_language, args.target_language)
@@ -106,6 +108,7 @@ if __name__ == "__main__":
             translate_xml_file(file_name, args.source_language, args.target_language)
         else:
             raise RuntimeError("Unsupported file type: " + fileType)
+        print("...DONE!")
             
 
 
