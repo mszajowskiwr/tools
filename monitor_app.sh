@@ -9,7 +9,6 @@ echo -en "\033]0;${url}\a"
 [ $# -eq 1 ] && url=$1;
 date_cmd=$(( command -v gdate >/dev/null && echo "gdate" ) || echo "date")
 
-echo "date_cmd==$date_cmd"
 for i in `seq $count`; do
     echo -en "\033]0;${url}\a"
     echo -n "$($date_cmd +"%T.%N") ($i): "
