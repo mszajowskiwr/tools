@@ -1,0 +1,11 @@
+version: '2.2'
+
+services:
+  wrredis:
+    build: .
+    image: wrredis
+    ports:
+      - "6379:6379"
+    cap_add:
+      - NET_ADMIN
+
